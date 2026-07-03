@@ -19,8 +19,7 @@ const exclude = [
     '/telegram',
     '/test',
     '/oauth',
-    '/v1',
-    '/apiKey'
+    '/v1'
 ];
 
 const requirePerms = [
