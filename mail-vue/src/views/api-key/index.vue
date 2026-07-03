@@ -6,7 +6,7 @@
     </div>
 
     <el-scrollbar class="scrollbar">
-      <div class="loading" :class="loading ? 'loading-show' : 'loading-hide'" :style="firstLoad ? 'background: transparent' : ''">
+      <div class="loading" :class="loadingFlag ? 'loading-show' : 'loading-hide'" :style="firstLoad ? 'background: transparent' : ''">
         <loading/>
       </div>
       <div class="key-box">
