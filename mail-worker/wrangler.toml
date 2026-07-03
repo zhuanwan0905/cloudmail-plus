@@ -1,0 +1,46 @@
+name = "cloudmail"  # 改为 cloudmail，与 CI 云端名字保持一致
+main = "src/index.js"
+compatibility_date = "2026-07-02"  # 建议更新到当前或日志中的日期
+keep_vars = true
+
+[observability]
+enabled = false  # 根据云端配置，关闭观测，避免冲突
+
+# === 解开 D1 数据库注释并填入你的 ID ===
+[[d1_databases]]
+binding = "db"			
+database_name = "cloudmail"  # 填入你 D1 数据库的名字
+database_id = "6f6e2b58-1bc9-4e8e-b8c8-13261f5ecd7a"
+
+# === 解开 KV 数据库注释并填入你的 ID ===
+[[kv_namespaces]]
+binding = "kv"			
+id = "e2eec8b4e736403997137949389b00c3"
+
+# === 绑定你的自定义路由，防止它去走未注册的 workers.dev ===
+[[routes]]
+pattern = "mail.nmlgb.cyou"
+zone_name = "nmlgb.cyou"
+custom_domain = true
+
+[ai]
+binding = "ai"
+
+[assets]
+binding = "assets"		
+directory = "./dist"	
+not_found_handling = "single-page-application"
+run_worker_first = true
+
+#[triggers]
+#crons = ["0 16 * * *"]	
+
+
+# === 解开环境变量注释并填入你的实际配置 ===
+[vars]
+admin = "admin@nmlgb.cyou"
+domain = "[\"nmlgb.cyou\"]"
+jwt_secret = "jiapengchengyong78caoren" # 如果这是你的真实密钥，部署成功后记得去云端或本地单独修改安全系数更高的字符串
+
+[build]
+command = "pnpm --prefix ../mail-vue install && pnpm --prefix ../mail-vue run build"
